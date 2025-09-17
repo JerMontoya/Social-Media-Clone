@@ -24,4 +24,4 @@ export function AuthProvider({ children }) {
       {!initializing && children}
     </AuthContext.Provider>
   );
-}
+} 
