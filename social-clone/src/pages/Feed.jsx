@@ -1,9 +1,10 @@
 import React from 'react';
+import Navbar from '../components/Navbar';
 
 const Feed = () => {
   return (
-    <div className="bg-blue-500 text-white p-6 rounded-lg">
-      Tailwind v3 is working 🎉
+    <div>
+      <Navbar />
     </div>
   );
 };
