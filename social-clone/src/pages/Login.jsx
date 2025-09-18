@@ -1,6 +1,7 @@
 import React, { useState } from "react";
-import { signInWithEmailAndPassword } from "firebase/auth";
-import { auth, login, signup } from "../firebase";
+import { signInWithEmailAndPassword, createUserWithEmailAndPassword, updateProfile } from "firebase/auth";
+import {doc, setDoc, serverTimestamp} from "firebase/firestore"
+import { auth, db } from "../firebase";
 import { useNavigate } from "react-router-dom";
 import logo from "../assets/logo.jpg";
 
@@ -14,10 +15,21 @@ const Login = () => {
   const user_auth = async (e) => {
     e.preventDefault();
     if (signState === "Sign In") {
-      await login(auth, email, password);
+      await signInWithEmailAndPassword(auth, email, password);
       navigate("/feed");
     } else {
-      await signup(email, password);
+      const cred = await createUserWithEmailAndPassword(auth, email, password);
+      if (name) {
+        await updateProfile(cred.user, {displayName: name});
+
+        await setDoc(doc(db, "users", cred.user.uid), {
+          uid: cred.user.uid,
+          email,
+          displayName: name,
+          createdAt: serverTimestamp(),
+        });
+      }
+      navigate("/feed");
     }
   };
 
@@ -38,7 +50,7 @@ const Login = () => {
           <h1 className="text-2xl sm:text-3xl md:text-4xl font-bold text-white text-center mb-8 sm:mb-8">
             {signState}
           </h1>
-          <form className="flex flex-col gap-4 sm:gap-5">
+          <form className="flex flex-col gap-4 sm:gap-5" onSubmit={user_auth}>
             {signState === "Sign Up" ? (
               <input
                 value={name}
