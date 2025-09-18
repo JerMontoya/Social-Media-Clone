@@ -2,7 +2,7 @@ import React from "react";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import SignUp from "./pages/SignUp";
 import Login from "./pages/Login";
-import Feed from "./pages/Feed"; // create a simple feed component
+import Feed from "./pages/Feed"; 
 
 function App(){
   return (
