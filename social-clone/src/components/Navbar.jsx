@@ -2,6 +2,7 @@ import React from "react";
 import { logout } from "../firebase";
 import logo from "../assets/logo.jpg";
 import { Link, useNavigate } from "react-router-dom";
+import profile from "../assets/profile.png";
 
 const Navbar = () => {
   const navigate = useNavigate();
@@ -41,10 +42,15 @@ const Navbar = () => {
           </li>
         )}
         {location.pathname !== "/profile" && (
-          <li>
+          <li className="flex">
+            <img
+              src={profile}
+              alt="avatar"
+              className="w-10 h-10 rounded-full border-2 border-pink-400"
+            />
             <Link
               to="/profile"
-              className="text-gray-300 hover:text-pink-400 transition"
+              className="mt-2 mx-1 text-gray-300 hover:text-pink-400 transition"
             >
               Profile
             </Link>

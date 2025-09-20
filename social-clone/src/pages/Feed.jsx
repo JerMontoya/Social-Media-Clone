@@ -8,6 +8,7 @@ import {
 import React, { useState } from "react";
 import Navbar from "../components/Navbar";
 import logo from "../assets/logo.jpg";
+import profile from "../assets/profile.png"
 
 const Feed = () => {
   const [fakePosts, setFakePosts] = useState([
@@ -123,7 +124,7 @@ const Feed = () => {
           <div className="bg-black/75 backdrop-blur-md rounded-2xl p-4 sm:p-6 shadow-lg text-white">
             <div className="flex items-center space-x-3">
               <img
-                src={logo}
+                src={profile}
                 alt="avatar"
                 className="w-10 h-10 rounded-full border-2 border-pink-400"
               />
