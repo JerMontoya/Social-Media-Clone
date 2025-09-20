@@ -5,6 +5,8 @@ import logo from "../assets/logo.jpg";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faPaperPlane, faPlusCircle } from "@fortawesome/free-solid-svg-icons";
 import CycleButton from "../components/CycleButton";
+import Friends from "../components/Friends";
+import Photos from "../components/Photos";
 
 const Profile = () => {
   const [activeTab, setActiveTab] = useState("posts");
@@ -141,7 +143,7 @@ const Profile = () => {
             <div className="flex items-center space-x-3">
               <img
                 src={profile}
-                alt="avatar"
+                alt="profile pic"
                 className="w-10 h-10 rounded-full border-2 border-pink-400"
               />
               <input
@@ -312,36 +314,13 @@ const Profile = () => {
         {activeTab === "friends" && (
           <div className="bg-black/75 backdrop-blur-md rounded-2xl p-6 shadow-lg text-white">
             <h2 className="text-xl font-bold mb-2">Friends</h2>
-            <ul className="space-y-2">
-              <li>Alice</li>
-              <li>Bob</li>
-              <li>Charlie</li>
-            </ul>
+            <Friends />
           </div>
         )}
 
         {activeTab === "photos" && (
-          <div className="bg-black/75 backdrop-blur-md rounded-2xl p-6 shadow-lg text-white grid grid-cols-2 gap-4">
-            <img
-              src="https://via.placeholder.com/150"
-              alt="Photo 1"
-              className="rounded-lg shadow"
-            />
-            <img
-              src="https://via.placeholder.com/150"
-              alt="Photo 2"
-              className="rounded-lg shadow"
-            />
-            <img
-              src="https://via.placeholder.com/150"
-              alt="Photo 3"
-              className="rounded-lg shadow"
-            />
-            <img
-              src="https://via.placeholder.com/150"
-              alt="Photo 4"
-              className="rounded-lg shadow"
-            />
+          <div className="bg-black/75 backdrop-blur-md rounded-2xl p-6 shadow-lg text-white gap-4">
+            <Photos/>
           </div>
         )}
       </div>
