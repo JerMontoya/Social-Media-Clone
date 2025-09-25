@@ -2,8 +2,6 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import {
   faPlusCircle,
   faPaperPlane,
-  faCommentDots,
-  faThumbsUp,
 } from "@fortawesome/free-solid-svg-icons";
 import React, { useState } from "react";
 import Navbar from "../components/Navbar";
@@ -183,7 +181,7 @@ const Feed = () => {
                 >
                   💬 Comment
                 </button>
-                <button className="flex items-center gap-1 px-3 py-1 rounded-full text-sm font-semibold bg-gray-800 text-gray-300 hover:bg-gray-700">
+                <button className="cursor-not-allowed flex items-center gap-1 px-3 py-1 rounded-full text-sm font-semibold bg-gray-800 text-gray-300 hover:bg-gray-700">
                   <FontAwesomeIcon icon={faPaperPlane} className="h-4 w-4" />
                   Share
                 </button>

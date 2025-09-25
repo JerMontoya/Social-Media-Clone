@@ -1,7 +1,6 @@
 import React, { useState } from "react";
 import Navbar from "../components/Navbar";
 import profile from "../assets/profile.png";
-import logo from "../assets/logo.jpg";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faPaperPlane, faPlusCircle } from "@fortawesome/free-solid-svg-icons";
 import CycleButton from "../components/CycleButton";
@@ -87,14 +86,19 @@ const Profile = () => {
           <img
             src={profile}
             alt=""
-            className="w-84 h-84 rounded border-4 border-white shadow-lg object-cover"
+            className="w-1/2 rounded-full border-4 border-white shadow-lg object-cover"
           />
           <h1
-            className="absolute top-3 right-3 px-3 py-1 text-2xl sm:text-5xl font-bold text-white tracking-wide 
-                   bg-black/40 backdrop-blur-md rounded-md drop-shadow-lg"
+            className="absolute top-5 right-3 px-3 py-1 text-xl sm:text-4xl font-bold text-white tracking-wide"
           >
             Jeralyn Montoya
           </h1>
+          <ul className="absolute top-20 right-20 flex flex-col space-y-2 text-white font-medium">
+            <li>6 Friends</li>
+            <li>1 Post</li>
+            <li className="bg-white/10 px-3 py-1 rounded-lg cursor-not-allowed">Edit Profile</li>
+            <li className="bg-white/10 px-3 py-1 rounded-lg cursor-not-allowed">Share Profile</li>
+          </ul>
         </div>
         <div className="flex justify-center gap-6 sm:gap-10 mt-6">
           <button
@@ -226,7 +230,7 @@ const Profile = () => {
                         </div>
                       </div>
                     )}
-                    <button className="flex items-center gap-1 px-3 py-1 rounded-full text-sm font-semibold bg-gray-800 text-gray-300 hover:bg-gray-700">
+                    <button className="cursor-not-allowed flex items-center gap-1 px-3 py-1 rounded-full text-sm font-semibold bg-gray-800 text-gray-300 hover:bg-gray-700">
                       <FontAwesomeIcon
                         icon={faPaperPlane}
                         className="h-4 w-4"

@@ -3,7 +3,8 @@ import { signInWithEmailAndPassword, createUserWithEmailAndPassword, updateProfi
 import {doc, setDoc, serverTimestamp} from "firebase/firestore"
 import { auth, db } from "../firebase";
 import { useNavigate } from "react-router-dom";
-import logo from "../assets/logo.jpg";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faNetworkWired } from "@fortawesome/free-solid-svg-icons";
 
 const Login = () => {
   const [email, setEmail] = useState("");
@@ -36,12 +37,8 @@ const Login = () => {
   return (
     <div className="min-h-screen flex flex-col bg-gradient-to-br from-purple-600 via-pink-500 to-red-500 p-5">
       <div className="flex justify-start">
-        <img
-          src={logo}
-          alt=""
-          className="h-12 w-12 rounded-full shadow-lg border-2 border-white/30"
-        />
-        <h1 className="mt-1 mx-2 bg-gradient-to-r from-purple-800 via-pink-700 to-red-700 bg-clip-text text-transparent text-4xl font-bold tracking-wide drop-shadow-[0_2px_2px_rgba(255,255,255,0.3)]">
+        <FontAwesomeIcon icon={faNetworkWired} className="h-10 w-10 invert" />
+        <h1 className="mt-1 mx-2 bg-gradient-to-r from-purple-800 via-pink-700 to-red-700 bg-clip-text text-transparent text-4xl font-bold tracking-wide drop-shadow-[0_2px_2px_rgba(255,255,255,0.9)]">
           Tether
         </h1>
       </div>
