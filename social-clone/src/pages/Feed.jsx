@@ -1,12 +1,8 @@
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import {
-  faPlusCircle,
-  faPaperPlane,
-} from "@fortawesome/free-solid-svg-icons";
+import { faPlusCircle, faPaperPlane } from "@fortawesome/free-solid-svg-icons";
 import React, { useState } from "react";
 import Navbar from "../components/Navbar";
-import logo from "../assets/logo.jpg";
-import profile from "../assets/profile.png"
+import profile from "../assets/profile.png";
 
 const Feed = () => {
   const [fakePosts, setFakePosts] = useState([
@@ -63,7 +59,7 @@ const Feed = () => {
     const post = {
       id: fakePosts.length + 1,
       user: "You",
-      avatar: logo,
+      avatar: profile,
       content: newPost,
     };
 
@@ -106,18 +102,41 @@ const Feed = () => {
     );
   };
 
+  const [openChat, setOpenChat] = useState(false);
+
   return (
     <div>
-      {/* Navbar */}
       <div className="fixed top-0 left-0 w-full z-50">
         <Navbar />
       </div>
       <div className="h-16" />
 
       {/* Main Feed */}
-      <div className="min-h-screen flex flex-col md:flex-row bg-gradient-to-br from-purple-600 via-pink-500 to-red-500 p-4 md:p-6">
+      <div className="min-h-screen flex justify-between bg-gradient-to-br from-purple-600 via-pink-500 to-red-500 p-4 md:p-6">
         {/* Posts Section */}
-        <div className="flex-1 max-w-2xl mx-auto w-full space-y-6">
+
+        <ul className="fixed top-0 left-0 h-screen w-40 bg-black/30 backdrop-blur-md hidden md:flex flex-col justify-evenly items-center text-white font-medium">
+          <li className="cursor-not-allowed w-full text-center py-2 rounded-lg hover:bg-white/10 transition">
+            Search
+          </li>
+          <li className="w-full text-center py-2 rounded-lg hover:bg-white/10 cursor-not-allowed transition">
+            Friends
+          </li>
+          <li className="w-full text-center py-2 rounded-lg hover:bg-white/10 cursor-not-allowed transition">
+            Notifications
+          </li>
+          <li className="w-full text-center py-2 rounded-lg hover:bg-white/10 cursor-not-allowed transition">
+            Reels
+          </li>
+          <li className="w-full text-center py-2 rounded-lg hover:bg-white/10 cursor-not-allowed transition">
+            Messages
+          </li>
+          <li className="w-full text-center py-2 rounded-lg hover:bg-white/10 cursor-not-allowed transition">
+            Explore
+          </li>
+        </ul>
+
+        <div className="max-w-2xl mx-auto w-full space-y-6">
           {/* Create Post */}
           <div className="bg-black/75 backdrop-blur-md rounded-2xl p-4 sm:p-6 shadow-lg text-white">
             <div className="flex items-center space-x-3">
@@ -230,37 +249,46 @@ const Feed = () => {
         </div>
 
         {/* Sidebar */}
-        <aside className="hidden md:flex flex-col w-64 ml-6">
+        <div className="hidden md:flex flex-col w-64 ml-6">
           <div className="fixed bottom-5 right-5 w-72 bg-black/75 backdrop-blur-md rounded-2xl p-4 shadow-lg text-white">
-            <h3 className="text-white font-bold text-lg mb-3">Chat</h3>
-            <ul className="space-y-3">
-              <li className="flex items-center space-x-3">
-                <img
-                  src="https://i.pravatar.cc/40?img=8"
-                  alt="friend"
-                  className="w-8 h-8 rounded-full border border-pink-400"
-                />
-                <span>Sarah</span>
-              </li>
-              <li className="flex items-center space-x-3">
-                <img
-                  src="https://i.pravatar.cc/40?img=15"
-                  alt="friend"
-                  className="w-8 h-8 rounded-full border border-pink-400"
-                />
-                <span>David</span>
-              </li>
-              <li className="flex items-center space-x-3">
-                <img
-                  src="https://i.pravatar.cc/40?img=22"
-                  alt="friend"
-                  className="w-8 h-8 rounded-full border border-pink-400"
-                />
-                <span>Emily</span>
-              </li>
-            </ul>
+            <button
+              className="text-white font-bold text-lg mb-3 bg-white/10 px-3 py-1 rounded-lg"
+              onClick={() => setOpenChat(!openChat)}
+            >
+              Chat With A Friend
+            </button>
+            {openChat && (
+              <>
+                <ul className="space-y-3">
+                  <li className="flex items-center space-x-3">
+                    <img
+                      src="https://i.pravatar.cc/40?img=8"
+                      alt="friend"
+                      className="w-8 h-8 rounded-full border border-pink-400"
+                    />
+                    <span>Sarah</span>
+                  </li>
+                  <li className="flex items-center space-x-3">
+                    <img
+                      src="https://i.pravatar.cc/40?img=15"
+                      alt="friend"
+                      className="w-8 h-8 rounded-full border border-pink-400"
+                    />
+                    <span>David</span>
+                  </li>
+                  <li className="flex items-center space-x-3">
+                    <img
+                      src="https://i.pravatar.cc/40?img=22"
+                      alt="friend"
+                      className="w-8 h-8 rounded-full border border-pink-400"
+                    />
+                    <span>Emily</span>
+                  </li>
+                </ul>
+              </>
+            )}
           </div>
-        </aside>
+        </div>
       </div>
     </div>
   );

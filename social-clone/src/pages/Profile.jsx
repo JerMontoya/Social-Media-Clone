@@ -93,7 +93,7 @@ const Profile = () => {
           >
             Jeralyn Montoya
           </h1>
-          <ul className="absolute top-20 right-20 flex flex-col space-y-2 text-white font-medium">
+          <ul className="absolute top-20 right-20 flex flex-col text-center space-y-2 text-white font-medium">
             <li>6 Friends</li>
             <li>1 Post</li>
             <li className="bg-white/10 px-3 py-1 rounded-lg cursor-not-allowed">Edit Profile</li>
