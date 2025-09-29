@@ -1,81 +1,13 @@
 import React, { useState } from "react";
 import Navbar from "../components/Navbar";
 import profile from "../assets/profile.png";
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faPaperPlane, faPlusCircle } from "@fortawesome/free-solid-svg-icons";
 import CycleButton from "../components/CycleButton";
 import Friends from "../components/Friends";
 import Photos from "../components/Photos";
+import NewPost from "../components/NewPost";
 
 const Profile = () => {
   const [activeTab, setActiveTab] = useState("posts");
-  const [postInput, setPostInput] = useState("");
-  const [likedPosts, setLikedPosts] = useState([]);
-
-  // State for posts on the profile page
-  const [posts, setPosts] = useState([
-    {
-      id: 1,
-      name: "Jeralyn Montoya",
-      content: "Welcome to my profile page! 🎉",
-      liked: false,
-      comments: [],
-    },
-  ]);
-
-  const handleCreatePost = () => {
-    if (postInput.trim() === "") return;
-
-    const newPost = {
-      id: Date.now(),
-      name: "Jeralyn Montoya", // you can pull the logged-in user’s name here
-      content: postInput,
-      liked: false,
-      comments: [],
-    };
-
-    setPosts([newPost, ...posts]);
-    setPostInput("");
-  };
-
-  const handleLike = (postId) => {
-    setLikedPosts((prev) =>
-      prev.includes(postId)
-        ? prev.filter((id) => id !== postId)
-        : [...prev, postId]
-    );
-  };
-
-  // Add a comment to a post
-
-  const toggleComments = (id) => {
-    setPosts((prevPosts) =>
-      prevPosts.map((posts) =>
-        posts.id === id
-          ? { ...posts, showComments: !posts.showComments }
-          : posts
-      )
-    );
-  };
-
-  const addComment = (id) => {
-    setPosts((prevPosts) =>
-      prevPosts.map((post) => {
-        if (post.id === id && posts.newComment?.trim() !== "") {
-          const newComment = {
-            user: "You",
-            text: post.newComment,
-          };
-          return {
-            ...post,
-            comments: [...(posts.comments || []), newComment],
-            newComment: "",
-          };
-        }
-        return posts;
-      })
-    );
-  };
 
   return (
     <div className="min-h-screen bg-gradient-to-br from-purple-600 via-pink-500 to-red-500">
@@ -145,103 +77,7 @@ const Profile = () => {
         </div>
         {activeTab === "posts" && (
           <div className="w-full max-w-2xl bg-black/75 backdrop-blur-md rounded-2xl p-4 sm:p-6 shadow-lg text-white space-y-4">
-            <div className="flex items-center space-x-3">
-              <img
-                src={profile}
-                alt="profile pic"
-                className="w-10 h-10 rounded-full border-2 border-pink-400"
-              />
-              <input
-                type="text"
-                placeholder="What's on your mind?"
-                value={postInput}
-                onChange={(e) => setPostInput(e.target.value)}
-                className="w-full bg-gray-800 text-gray-200 rounded-full px-4 py-2 focus:outline-none focus:ring-2 focus:ring-pink-500"
-              />
-              <button
-                onClick={handleCreatePost}
-                className="text-pink-400 hover:text-pink-500"
-              >
-                <FontAwesomeIcon icon={faPlusCircle} className="h-6 w-6" />
-              </button>
-            </div>
-            <div className="space-y-4">
-              {posts.map((post) => (
-                <div
-                  key={post.id}
-                  className="bg-black/75 backdrop-blur-md rounded-2xl p-4 shadow-md text-white"
-                >
-                  <h3 className="font-bold">{post.name}</h3>
-                  <p>{post.content}</p>
-                  <div className="flex items-center space-x-6 mt-3 text-gray-300 text-sm">
-                    <button
-                      onClick={() => handleLike(post.id)}
-                      className={`flex items-center gap-2 mt-2 px-3 py-1 rounded-full text-sm font-semibold ${
-                        likedPosts.includes(post.id)
-                          ? "bg-pink-500 text-white"
-                          : "bg-gray-800 text-gray-300"
-                      }`}
-                    >
-                      {likedPosts.includes(post.id) ? "❤️ Liked" : "🤍 Like"}
-                    </button>
-                    <button
-                      onClick={() => toggleComments(post.id)}
-                      className="flex items-center gap-2 mt-2 px-3 py-1 rounded-full text-sm font-semibold transition bg-gray-800 text-gray-300 hover:bg-gray-700"
-                    >
-                      💬 Comment
-                    </button>
-
-                    {/* Comment Dropdown */}
-                    {post.showComments && (
-                      <div className="mt-3 flex flex-col gap-2">
-                        <div className="flex gap-2">
-                          <input
-                            type="text"
-                            placeholder="Write a comment..."
-                            className="flex-1 bg-gray-900 text-white p-2 rounded-md focus:outline-none focus:ring-2 focus:ring-pink-500"
-                            value={post.newComment || ""}
-                            onChange={(e) =>
-                              setPosts((prev) =>
-                                prev.map((p) =>
-                                  p.id === post.id
-                                    ? { ...p, newComment: e.target.value }
-                                    : p
-                                )
-                              )
-                            }
-                          />
-                          <button
-                            onClick={() => addComment(post.id)}
-                            className="bg-pink-500 text-white px-3 rounded-md hover:bg-pink-600"
-                          >
-                            Post
-                          </button>
-                        </div>
-
-                        {/* Show Comments */}
-                        <div className="flex flex-col gap-1 mt-2">
-                          {post.comments?.map((c, idx) => (
-                            <p key={idx} className="text-gray-300 text-sm">
-                              <span className="font-semibold text-white">
-                                {c.user}:{" "}
-                              </span>
-                              {c.text}
-                            </p>
-                          ))}
-                        </div>
-                      </div>
-                    )}
-                    <button className="cursor-not-allowed flex items-center gap-1 px-3 py-1 rounded-full text-sm font-semibold bg-gray-800 text-gray-300 hover:bg-gray-700">
-                      <FontAwesomeIcon
-                        icon={faPaperPlane}
-                        className="h-4 w-4"
-                      />
-                      Share
-                    </button>
-                  </div>
-                </div>
-              ))}
-            </div>
+            <NewPost />
           </div>
         )}
 
@@ -315,7 +151,8 @@ const Profile = () => {
             <h2 className="text-xl font-bold mb-2">Friends</h2>
             <Friends
               showContent={false}
-              wrapperClass="grid grid-cols-3 lg:grid-cols-6 gap-4"
+              showButtons={false}
+              profileWrapClass="grid grid-cols-3 lg:grid-cols-6 gap-4"
               className="flex flex-col gap-4 items-center bg-gray-800/70 p-3 rounded-xl hover:bg-gray-700/70 transition"
               avatarClass="w-20 h-20 rounded-lg object-cover"
               userClass="mt-2 text-sm font-medium text-center"

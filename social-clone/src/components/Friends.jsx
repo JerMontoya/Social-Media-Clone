@@ -3,6 +3,8 @@ import PostBtns from "./PostBtns";
 
 const Friends = ({
   showContent = true,
+  showButtons = true,
+  profileWrapClass = "",
   avatarClass = "",
   userClass = "",
   contentClass = "",
@@ -53,12 +55,42 @@ const Friends = ({
       avatar: "https://i.pravatar.cc/150?img=35",
       content: "Coffee + good book = perfect morning ☕📖",
     },
+    {
+    id: 8,
+    user: "Makenna Rivera",
+    avatar: "https://i.pravatar.cc/150?img=36",
+    content: "Back at the gym after a long break 💪 Feels good to be consistent again!",
+  },
+  {
+    id: 9,
+    user: "Ava Thompson",
+    avatar: "https://i.pravatar.cc/150?img=37",
+    content: "Baked my first sourdough bread today 🍞 It turned out amazing!",
+  },
+  {
+    id: 10,
+    user: "Lia Patel",
+    avatar: "https://i.pravatar.cc/150?img=38",
+    content: "Exploring React hooks more deeply 🔥 Anyone else loving useEffect?",
+  },
+  {
+    id: 11,
+    user: "Sophia Martinez",
+    avatar: "https://i.pravatar.cc/150?img=39",
+    content: "Movie night with friends 🎬🍿 Recommendations for thrillers?",
+  },
+  {
+    id: 12,
+    user: "Ethel Walker",
+    avatar: "https://i.pravatar.cc/150?img=40",
+    content: "Learning guitar chords 🎸 Fingers hurt, but progress feels awesome!",
+  },
   ];
 
   return (
-    <div>
+    <div className={profileWrapClass}>
       {friends.map((friend) => (
-        <div className={`space-y-4 ${wrapperClass}`}>
+      <div className={`space-y-4 ${wrapperClass}`}>
           <div key={friend.id} className={className}>
             <img
               src={friend.avatar}
@@ -68,7 +100,7 @@ const Friends = ({
             <h1 className={userClass}>{friend.user}</h1>
           </div>
           {showContent && <p className={contentClass}>{friend.content}</p>}
-          <PostBtns />
+          {showButtons && <PostBtns />}
         </div>
       ))}
     </div>
