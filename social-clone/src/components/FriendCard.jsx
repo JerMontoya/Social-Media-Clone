@@ -1,7 +1,6 @@
 import React from "react";
-import PostBtns from "./PostBtns";
 
-const Friends = ({
+const FriendCard = ({
   showContent = true,
   avatarClass = "",
   userClass = "",
@@ -56,23 +55,16 @@ const Friends = ({
   ];
 
   return (
-    <div>
+    <div className={wrapperClass}>
       {friends.map((friend) => (
-        <div className={`space-y-4 ${wrapperClass}`}>
-          <div key={friend.id} className={className}>
-            <img
-              src={friend.avatar}
-              alt={friend.user}
-              className={avatarClass}
-            />
-            <h1 className={userClass}>{friend.user}</h1>
-          </div>
+        <div key={friend.id} className={className}>
+          <img src={friend.avatar} alt={friend.user} className={avatarClass} />
+          <h1 className={userClass}>{friend.user}</h1>
           {showContent && <p className={contentClass}>{friend.content}</p>}
-          <PostBtns />
         </div>
       ))}
     </div>
   );
 };
 
-export default Friends;
+export default FriendCard;

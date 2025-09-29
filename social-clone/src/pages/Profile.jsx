@@ -39,11 +39,10 @@ const Profile = () => {
   };
 
   const handleLike = (postId) => {
-    setLikedPosts(
-      (prev) =>
-        prev.includes(postId)
-          ? prev.filter((id) => id !== postId) // remove if already liked
-          : [...prev, postId] // add if not liked
+    setLikedPosts((prev) =>
+      prev.includes(postId)
+        ? prev.filter((id) => id !== postId)
+        : [...prev, postId]
     );
   };
 
@@ -88,16 +87,18 @@ const Profile = () => {
             alt=""
             className="w-1/2 rounded-full border-4 border-white shadow-lg object-cover"
           />
-          <h1
-            className="absolute top-5 right-3 px-3 py-1 text-xl sm:text-4xl font-bold text-white tracking-wide"
-          >
+          <h1 className="absolute top-5 right-3 px-3 py-1 text-xl sm:text-4xl font-bold text-white tracking-wide">
             Jeralyn Montoya
           </h1>
           <ul className="absolute top-20 right-20 flex flex-col text-center space-y-2 text-white font-medium">
             <li>6 Friends</li>
             <li>1 Post</li>
-            <li className="bg-white/10 px-3 py-1 rounded-lg cursor-not-allowed">Edit Profile</li>
-            <li className="bg-white/10 px-3 py-1 rounded-lg cursor-not-allowed">Share Profile</li>
+            <li className="bg-white/10 px-3 py-1 rounded-lg cursor-not-allowed">
+              Edit Profile
+            </li>
+            <li className="bg-white/10 px-3 py-1 rounded-lg cursor-not-allowed">
+              Share Profile
+            </li>
           </ul>
         </div>
         <div className="flex justify-center gap-6 sm:gap-10 mt-6">
@@ -270,7 +271,7 @@ const Profile = () => {
                   "Tired",
                   "Disappointed",
                   "Happy",
-                  "+ Add New"
+                  "+ Add New",
                 ]}
               />
               <CycleButton
@@ -303,13 +304,7 @@ const Profile = () => {
                 ]}
               />
               <CycleButton
-                labels={[
-                  "Ice Cream",
-                  "Cookies",
-                  "Cake",
-                  "Pie",
-                  "+ Add New",
-                ]}
+                labels={["Ice Cream", "Cookies", "Cake", "Pie", "+ Add New"]}
               />
             </div>
           </div>
@@ -318,13 +313,19 @@ const Profile = () => {
         {activeTab === "friends" && (
           <div className="bg-black/75 backdrop-blur-md rounded-2xl p-6 shadow-lg text-white">
             <h2 className="text-xl font-bold mb-2">Friends</h2>
-            <Friends />
+            <Friends
+              showContent={false}
+              wrapperClass="grid grid-cols-3 lg:grid-cols-6 gap-4"
+              className="flex flex-col gap-4 items-center bg-gray-800/70 p-3 rounded-xl hover:bg-gray-700/70 transition"
+              avatarClass="w-20 h-20 rounded-lg object-cover"
+              userClass="mt-2 text-sm font-medium text-center"
+            />
           </div>
         )}
 
         {activeTab === "photos" && (
           <div className="bg-black/75 backdrop-blur-md rounded-2xl p-6 shadow-lg text-white gap-4">
-            <Photos/>
+            <Photos />
           </div>
         )}
       </div>
